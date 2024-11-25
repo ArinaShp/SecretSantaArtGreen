@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тайный Санта</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: rgb(255, 255, 255); /* Белый фон */
+      color: #000; /* Чёрный текст */
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #countdown {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    #santa-img {
+      width: 200px; /* Размер изображения */
+      animation: pulse 2s infinite; /* Пульсирующая анимация */
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <img id="santa-img" src="secret_santa_cartoon.png" alt="Тайный Санта">
+  <div id="countdown">Загрузка...</div>
+  <script>
+    // Целевая дата
+    let targetDate = new Date('2024-12-22T00:00:00');
+
+    // Функция обновления обратного отсчёта
+    function updateCountdown() {
+      const now = new Date();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        document.getElementById('countdown').innerText = "Событие началось!";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').innerText =
+        `${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд`;
+    }
+
+    // Запуск обратного отсчёта
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
