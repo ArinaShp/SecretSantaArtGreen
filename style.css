@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('new-year-background.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.countdown {
+    display: flex;
+    gap: 20px;
+}
+
+.time {
+    text-align: center;
+}
+
+.flip {
+    position: relative;
+    width: 80px;
+    height: 100px;
+    perspective: 1000px;
+}
+
+.flip .top,
+.flip .bottom {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: #001f3f; /* Тёмно-синий фон */
+    color: #00bfff; /* Голубой цвет цифр */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    backface-visibility: hidden;
+    border: 2px solid #001a33;
+}
+
+.flip .top {
+    border-bottom: 1px solid #001a33;
+    transform-origin: bottom;
+}
+
+.flip .bottom {
+    top: 50%;
+    border-top: 1px solid #001a33;
+    transform-origin: top;
+}
+
+.flip.new .top {
+    animation: flipDown 0.5s ease forwards;
+}
+
+.flip.new .bottom {
+    animation: flipUp 0.5s ease forwards;
+}
+
+@keyframes flipDown {
+    0% {
+        transform: rotateX(0deg);
+    }
+    100% {
+        transform: rotateX(-90deg);
+    }
+}
+
+@keyframes flipUp {
+    0% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
